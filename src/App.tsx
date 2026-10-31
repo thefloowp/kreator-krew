@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Bell, BriefcaseBusiness, CalendarDays, Compass, Heart, Home, Mail, MapPin, MessageCircle, Search, Users, ArrowUpRight, Bookmark, Menu, X, Camera, Palette, Settings2 } from 'lucide-react'
+import { Bell, BriefcaseBusiness, CalendarDays, Compass, Heart, Home, Mail, MapPin, MessageCircle, Search, Users, ArrowUpRight, Bookmark, Menu, X, Camera, Palette, Settings2, Plus, Image as ImageIcon, Smile, Send, MoreHorizontal, MessageSquare, Share2, TrendingUp, UsersRound, CalendarClock, Hash, Sparkles } from 'lucide-react'
 
 type Page = 'Home' | 'Discover' | 'Opportunities' | 'Events' | 'Stories' | 'My Krew Page'
 
@@ -51,16 +51,7 @@ function App() {
     </header>
 
     <main className="kk-main">
-      {page === 'Home' && <>
-        <section className="home-hero">
-          <div className="hero-copy"><span className="eyebrow">A COMMUNITY FOR THE DIGITAL KREW</span><h1>FIND YOUR<br/><em>PEOPLE.</em></h1><p>A space for the people who make things happen. Meet creatives, share what you're making, find opportunities, and make your next move.</p><div className="hero-actions"><button className="primary-cta" onClick={() => go('Discover')}>EXPLORE THE KREW <ArrowUpRight size={16}/></button><button className="text-cta" onClick={() => go('My Krew Page')}>VIEW MY PAGE ↗</button></div></div>
-          <div className="hero-art"><div className="hero-sticker sticker-orange">MAKE<br/>YOUR<br/>MOVE.</div><div className="hero-sticker sticker-outline">GOOD PEOPLE<br/>MAKE GOOD<br/>THINGS.</div><div className="hero-orbit">✳</div><div className="hero-caption">CREATORS. THINKERS. DOERS.<br/>ALL IN THE SAME KREW.</div></div>
-        </section>
-        <section className="home-intro"><div><span className="eyebrow">NOT JUST A NETWORK.</span><h2>GOOD PEOPLE.<br/><em>GOOD THINGS.</em></h2></div><p>Kreator Krew brings together designers, creators, marketers, makers, and digital professionals. Find people who get what you do — and discover what you can do together.</p></section>
-        <section className="content-section"><div className="section-top"><div><span className="eyebrow">PEOPLE TO KNOW</span><h2>MEET THE KREW</h2></div><button className="inline-link" onClick={() => go('Discover')}>EXPLORE EVERYONE ↗</button></div><div className="member-grid">{members.slice(0,3).map(member => <MemberCard key={member.handle} member={member} connected={connected.includes(member.handle)} onConnect={() => setConnected(prev => prev.includes(member.handle) ? prev.filter(x => x !== member.handle) : [...prev, member.handle])}/>)}</div></section>
-        <section className="home-feature-row"><div className="feature-block feature-opportunities"><span className="eyebrow">MAKE YOUR NEXT MOVE</span><h2>GOOD WORK<br/>IS OUT THERE.</h2><p>Discover projects, freelance gigs, and roles shared with the Krew.</p><button onClick={() => go('Opportunities')}>FIND OPPORTUNITIES ↗</button></div><div className="feature-block feature-events"><span className="eyebrow">GET OUT THERE</span><h2>LET'S MEET.<br/>LET'S MAKE.</h2><p>Join conversations, sessions, and meetups with people in your creative orbit.</p><button onClick={() => go('Events')}>SEE WHAT'S HAPPENING ↗</button></div></section>
-        <section className="content-section"><div className="section-top"><div><span className="eyebrow">FROM AROUND THE KREW</span><h2>FRESH STORIES</h2></div><button className="inline-link" onClick={() => go('Stories')}>READ ALL STORIES ↗</button></div><div className="story-grid">{stories.map(story => <StoryCard key={story.title} story={story} onClick={() => go('Stories')}/>)}</div></section>
-      </>}
+      {page === 'Home' && <HomeFeed onNavigate={go} />}
 
       {page === 'Discover' && <PageHeader eyebrow="YOUR PEOPLE ARE HERE" title={<>EXPLORE THE<br/><em>KREW.</em></>} description="Find your next collaborator, creative partner, mentor, or just someone who gets it." />}
       {page === 'Discover' && <section className="directory-section"><div className="directory-tools"><div className="search-field"><Search size={18}/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search people, skills, or disciplines..."/></div><span>{filteredMembers.length} MEMBERS</span></div><div className="member-grid directory-grid">{filteredMembers.map(member => <MemberCard key={member.handle} member={member} connected={connected.includes(member.handle)} onConnect={() => setConnected(prev => prev.includes(member.handle) ? prev.filter(x => x !== member.handle) : [...prev, member.handle])}/>)}</div>{filteredMembers.length === 0 && <p className="empty-state">No members found. Try another name or skill.</p>}</section>}
@@ -76,6 +67,99 @@ function App() {
       <footer className="kk-footer"><div className="footer-mark">KREATOR<br/>KREW<span>®</span></div><p>FIND YOUR PEOPLE.<br/>MAKE YOUR MOVE.</p><span>MADE FOR THE KREW · PHILIPPINES · © 2026</span></footer>
     </main>
     <div className="floating-hint"><Users size={15}/> FIND YOUR PEOPLE.</div>
+  </div>
+}
+
+
+function HomeFeed({ onNavigate }: { onNavigate: (page: Page) => void }) {
+  const [postText, setPostText] = useState('')
+  const [posts, setPosts] = useState([
+    { id: 1, name: 'Nica Santos', handle: '@nicasantos', role: 'Brand Strategist', initials: 'NS', color: '#c17c9a', time: '24 min ago', text: 'Been collecting little observations about Filipino neighborhood brands lately. The best identities are not always the loudest ones — sometimes it is the tiny details people remember. What local brand has stayed with you?', tags: ['Brand Strategy', 'Local Finds'], likes: 28, comments: 6, liked: false, kind: 'DISCUSSION' },
+    { id: 2, name: 'Paolo Reyes', handle: '@paoloreyes', role: 'Photographer & Filmmaker', initials: 'PR', color: '#8b9d72', time: '1 hr ago', text: 'A small reminder from today’s shoot: make room for happy accidents. The frame you did not plan might become the one you keep.', tags: ['Photography', 'Process'], likes: 42, comments: 9, liked: false, kind: 'FIELD NOTE' },
+    { id: 3, name: 'Jules Garcia', handle: '@julescreates', role: 'Illustrator', initials: 'JG', color: '#7888bd', time: '3 hrs ago', text: 'Looking for a motion designer to collaborate on a short illustration loop for an independent music project. Paid project, flexible timeline. Drop a comment or message me if you want the brief.', tags: ['Collaboration', 'Illustration'], likes: 17, comments: 4, liked: false, kind: 'COLLAB CALL' },
+  ])
+  const [activeComments, setActiveComments] = useState<number | null>(null)
+  const [commentText, setCommentText] = useState('')
+  const [savedPosts, setSavedPosts] = useState<number[]>([])
+
+  const publishPost = () => {
+    if (!postText.trim()) return
+    setPosts([{ id: Date.now(), name: 'MF Navarro', handle: '@mfnavarro', role: 'Multimedia Designer', initials: 'MF', color: '#f36b21', time: 'Just now', text: postText.trim(), tags: ['Krew Update'], likes: 0, comments: 0, liked: false, kind: 'YOUR POST' }, ...posts])
+    setPostText('')
+  }
+  const toggleLike = (id: number) => setPosts(current => current.map(post => post.id === id ? { ...post, liked: !post.liked, likes: post.likes + (post.liked ? -1 : 1) } : post))
+  const addComment = (id: number) => {
+    if (!commentText.trim()) return
+    setPosts(current => current.map(post => post.id === id ? { ...post, comments: post.comments + 1 } : post))
+    setCommentText('')
+    setActiveComments(null)
+  }
+
+  return <div className="home-dashboard">
+    <div className="home-welcome-strip">
+      <div><span className="eyebrow">SATURDAY, OCTOBER 31, 2026 · YOUR KREW SPACE</span><h1>Good afternoon, MF. <span>✳</span></h1><p>Your people are making things happen. Here's what's moving around the Krew.</p></div>
+      <button className="welcome-profile-link" onClick={() => onNavigate('My Krew Page')}>VIEW YOUR KREW PAGE <ArrowUpRight size={15}/></button>
+    </div>
+
+    <div className="home-dashboard-grid">
+      <aside className="home-left-rail">
+        <div className="rail-profile-card">
+          <div className="rail-cover"></div><div className="rail-avatar">MF</div>
+          <strong>MF Navarro</strong><span>@mfnavarro</span><small>Multimedia Designer · Parañaque</small>
+          <div className="rail-stats"><div><b>128</b><small>Connections</small></div><div><b>24</b><small>Projects</small></div></div>
+          <button onClick={() => onNavigate('My Krew Page')}>EDIT YOUR PAGE <ArrowUpRight size={13}/></button>
+        </div>
+        <nav className="home-side-nav">
+          <span className="eyebrow">YOUR KREW</span>
+          <button className="side-active"><Home size={17}/> Feed <span>●</span></button>
+          <button onClick={() => onNavigate('Discover')}><UsersRound size={17}/> Connections</button>
+          <button onClick={() => onNavigate('Discover')}><Compass size={17}/> Discover people</button>
+          <button onClick={() => onNavigate('Opportunities')}><BriefcaseBusiness size={17}/> Opportunities</button>
+          <button onClick={() => onNavigate('Events')}><CalendarDays size={17}/> Events</button>
+          <button onClick={() => onNavigate('Stories')}><Camera size={17}/> Krew Stories</button>
+        </nav>
+        <div className="rail-tags"><span className="eyebrow">YOUR INTERESTS</span><div><span>#Branding</span><span>#Motion</span><span>#Design</span><span>#CreativeLife</span></div><button onClick={() => onNavigate('My Krew Page')}>MANAGE INTERESTS ↗</button></div>
+      </aside>
+
+      <section className="home-feed-column">
+        <div className="feed-intro"><div><span className="eyebrow">THE COMMUNITY PULSE</span><h2>Your Krew Feed</h2></div><button className="feed-filter">For you <span>⌄</span></button></div>
+
+        <div className="krew-stories">
+          <div className="stories-heading"><strong>KREW MOMENTS</strong><button onClick={() => onNavigate('Stories')}>SEE ALL ↗</button></div>
+          <div className="stories-bubbles">
+            <button className="story-bubble add-story" onClick={() => alert('Story creation will be connected in a later phase.')}><span><Plus size={21}/></span><small>Add yours</small></button>
+            {members.map((member, index) => <button className="story-bubble" key={member.handle} onClick={() => onNavigate('Discover')}><span style={{background: member.color}}>{member.initials}</span><small>{member.name.split(' ')[0]}</small><i>{index === 0 ? 'NEW' : ''}</i></button>)}
+          </div>
+        </div>
+
+        <div className="post-composer">
+          <div className="composer-top"><div className="composer-avatar">MF</div><textarea value={postText} onChange={e => setPostText(e.target.value)} placeholder="What's happening in your creative world? Share an idea, a win, a question..." rows={2}/></div>
+          <div className="composer-bottom"><div><button onClick={() => alert('Photo uploads will be connected when storage is added.')}><ImageIcon size={16}/> Photo / Work</button><button onClick={() => alert('Tagging will be available in a later phase.')}><Hash size={16}/> Topic</button><button onClick={() => alert('Mood and activity options are coming soon.')}><Smile size={16}/> Feeling</button></div><button className="publish-button" disabled={!postText.trim()} onClick={publishPost}>POST TO KREW <Send size={14}/></button></div>
+        </div>
+
+        <div className="feed-sort-row"><span><Sparkles size={14}/> LATEST FROM YOUR NETWORK</span><button>Latest <span>⌄</span></button></div>
+        <div className="feed-post-list">
+          {posts.map(post => <article className="feed-post" key={post.id}>
+            <div className="post-head"><div className="post-avatar" style={{background:post.color}}>{post.initials}</div><div className="post-author"><strong>{post.name}</strong><span>{post.role} · {post.time}</span></div><button className="post-more" aria-label="More post options"><MoreHorizontal size={20}/></button></div>
+            <div className="post-kind">{post.kind}</div>
+            <p className="post-copy">{post.text}</p>
+            <div className="post-tags">{post.tags.map(tag => <span key={tag}>#{tag.replaceAll(' ', '')}</span>)}</div>
+            <div className="post-engagement"><span>{post.likes} appreciations</span><span>{post.comments} comments</span></div>
+            <div className="post-actions"><button className={post.liked ? 'post-liked' : ''} onClick={() => toggleLike(post.id)}><Heart size={17} fill={post.liked ? 'currentColor' : 'none'}/> Appreciate</button><button onClick={() => setActiveComments(activeComments === post.id ? null : post.id)}><MessageSquare size={17}/> Comment</button><button onClick={() => alert('Sharing will be available when public post links are implemented.')}><Share2 size={17}/> Share</button><button className={savedPosts.includes(post.id) ? 'post-liked' : ''} onClick={() => setSavedPosts(current => current.includes(post.id) ? current.filter(id => id !== post.id) : [...current, post.id])}><Bookmark size={17} fill={savedPosts.includes(post.id) ? 'currentColor' : 'none'}/></button></div>
+            {activeComments === post.id && <div className="comment-composer"><input value={commentText} onChange={e => setCommentText(e.target.value)} placeholder="Add something thoughtful..."/><button onClick={() => addComment(post.id)} disabled={!commentText.trim()}><Send size={15}/></button></div>}
+          </article>)}
+        </div>
+        <button className="load-more-posts" onClick={() => alert('You are all caught up in this demo feed.')}>YOU'RE ALL CAUGHT UP</button>
+      </section>
+
+      <aside className="home-right-rail">
+        <div className="right-widget krew-prompt"><span className="eyebrow">A LITTLE NUDGE</span><h3>Good things happen when you show up.</h3><p>Share what you're working on or give someone else's work a little love.</p><button onClick={() => document.querySelector('.post-composer textarea')?.scrollIntoView({behavior:'smooth',block:'center'})}>START A CONVERSATION ↗</button></div>
+        <div className="right-widget"><div className="widget-heading"><strong>PEOPLE YOU MAY KNOW</strong><button onClick={() => onNavigate('Discover')}>SEE ALL</button></div>{members.slice(1,4).map(member => <div className="suggested-person" key={member.handle}><span style={{background:member.color}}>{member.initials}</span><div><b>{member.name}</b><small>{member.role}</small></div><button onClick={() => onNavigate('Discover')}><Plus size={15}/></button></div>)}</div>
+        <div className="right-widget"><div className="widget-heading"><strong>COMING UP</strong><button onClick={() => onNavigate('Events')}>CALENDAR ↗</button></div><div className="mini-event"><span><b>08</b>NOV</span><div><strong>Krew Meetup: Make New Things</strong><small>Makati City · 3:00 PM</small></div></div><div className="mini-event"><span><b>15</b>NOV</span><div><strong>Creative Work, Real Talk</strong><small>Online · 7:00 PM</small></div></div></div>
+        <div className="right-widget trending-widget"><div className="widget-heading"><strong>BUZZING IN THE KREW</strong><TrendingUp size={16}/></div>{['#CreativeProcess','#FilipinoDesign','#OpenForWork','#MotionDesign'].map((tag,i)=><button key={tag} onClick={() => onNavigate('Discover')}><Hash size={14}/><span><b>{tag}</b><small>{[28,19,14,11][i]} conversations</small></span></button>)}</div>
+        <div className="right-rail-footer">ABOUT KREATOR KREW · COMMUNITY GUIDELINES · PRIVACY<br/>MADE FOR THE KREW. PHILIPPINES. © 2026</div>
+      </aside>
+    </div>
   </div>
 }
 
