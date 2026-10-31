@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Bell, BriefcaseBusiness, CalendarDays, Compass, Heart, Home, Mail, MapPin, MessageCircle, Search, Users, ArrowUpRight, Bookmark, Menu, X, Camera, Palette, Settings2, Plus, Image as ImageIcon, Smile, Send, MoreHorizontal, MessageSquare, Share2, TrendingUp, UsersRound, CalendarClock, Hash, Sparkles } from 'lucide-react'
+import { Bell, BriefcaseBusiness, CalendarDays, Compass, Heart, Home, Mail, MapPin, MessageCircle, Search, Users, ArrowUpRight, Bookmark, Menu, X, Camera, Palette, Settings2, Plus, Image as ImageIcon, Smile, Send, MoreHorizontal, MessageSquare, Share2, TrendingUp, UsersRound, Hash, Sparkles } from 'lucide-react'
 
 type Page = 'Home' | 'Discover' | 'Opportunities' | 'Events' | 'Stories' | 'My Krew Page'
 
