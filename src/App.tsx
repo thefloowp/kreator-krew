@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Bell, BriefcaseBusiness, Camera, Check, ChevronDown, Code2, Compass, Heart, ImagePlus, LayoutGrid, Mail, MapPin, MessageCircle, Palette, Plus, Search, Settings2, Sparkles, Users } from 'lucide-react'
+import { Bell, BriefcaseBusiness, Camera, Check, ChevronDown, Heart, Mail, MapPin, MessageCircle, Palette, Plus, Search, Settings2, Sparkles, Users } from 'lucide-react'
 
 type ThemeName = 'Studio' | 'After Hours' | 'Playground' | 'Archive'
 type LayoutName = 'Editorial' | 'Grid' | 'Stacked'
