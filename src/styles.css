@@ -265,3 +265,20 @@ button { -webkit-appearance: none; appearance: none; }
     align-items: flex-start;
   }
 }
+
+
+/* Full-bleed homepage hero: background spans the viewport edge-to-edge */
+.home-hero {
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+}
+@media (max-width: 650px) {
+  .home-hero {
+    width: 100vw;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+  }
+}
