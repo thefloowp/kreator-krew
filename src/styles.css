@@ -251,3 +251,17 @@ button { -webkit-appearance: none; appearance: none; }
     padding-right: 24px;
   }
 }
+
+
+/* Add breathing room below the fixed/sticky navigation on the Krew Page */
+.page-toolbar {
+  padding-top: 38px;
+  margin-bottom: 26px;
+}
+@media (max-width: 650px) {
+  .page-toolbar {
+    padding-top: 26px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+}
