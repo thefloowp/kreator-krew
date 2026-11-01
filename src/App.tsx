@@ -94,7 +94,7 @@ function HomeFeed({ onNavigate }: { onNavigate: (page: Page) => void }) {
 
   return <div className="home-dashboard">
     <div className="home-welcome-strip">
-      <div><span className="eyebrow">SATURDAY, OCTOBER 31, 2026 · YOUR KREW SPACE</span><h1>Good afternoon, MF. <span>✳</span></h1><p>Your people are making things happen. Here's what's moving around the Krew.</p></div>
+      <div><span className="eyebrow">SATURDAY, OCTOBER 31, 2026 · YOUR KREW SPACE</span><h1>Good afternoon, MF. <span>✳︎</span></h1><p>Your people are making things happen. Here's what's moving around the Krew.</p></div>
       <button className="welcome-profile-link" onClick={() => onNavigate('My Krew Page')}>VIEW YOUR KREW PAGE <ArrowUpRight size={15}/></button>
     </div>
 
@@ -182,7 +182,7 @@ function DiscoverPage({ connected, onConnect }: { connected: string[]; onConnect
   return <div className="discover-page">
     <section className="discover-hero">
       <div className="discover-hero-copy"><span className="eyebrow">YOUR PEOPLE ARE HERE</span><h1>FIND YOUR<br/><em>KREATOR KREW.</em></h1><p>Good things happen when the right people find each other. Meet the makers, thinkers, and doers shaping what comes next.</p><div className="discover-hero-stats"><span><b>{members.length.toString().padStart(2,'0')}</b> FOUNDING MEMBERS</span><i></i><span><b>01</b> CREATIVE COMMUNITY</span></div></div>
-      <div className="discover-hero-art"><div className="discover-orbit">✳</div><div className="discover-note">YOUR NEXT<br/>COLLABORATOR<br/><strong>IS OUT THERE.</strong></div><div className="discover-hero-caption">CREATORS FIND CREATORS.<br/>THAT'S HOW GOOD THINGS START.</div></div>
+      <div className="discover-hero-art"><div className="discover-orbit">✳︎</div><div className="discover-note">YOUR NEXT<br/>COLLABORATOR<br/><strong>IS OUT THERE.</strong></div><div className="discover-hero-caption">CREATORS FIND CREATORS.<br/>THAT'S HOW GOOD THINGS START.</div></div>
     </section>
     <section className="discover-content">
       <div className="discover-intro-row"><div><span className="eyebrow">MEET THE PEOPLE BEHIND THE WORK</span><h2>THE KREW DIRECTORY</h2></div><div className="discover-count"><strong>{filtered.length.toString().padStart(2,'0')}</strong><span>PEOPLE FOUND</span></div></div>
