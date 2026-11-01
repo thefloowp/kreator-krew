@@ -1704,3 +1704,74 @@ body {
     transition-duration: .01ms !important;
   }
 }
+
+
+/* =======================================================
+   FINAL MOBILE GUTTER ALIGNMENT
+   Fix: dashboard content touching viewport edges.
+======================================================= */
+@media (max-width: 700px) {
+  .home-dashboard {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    padding-inline: 18px !important;
+    padding-bottom: 36px;
+  }
+
+  .home-welcome-strip,
+  .home-dashboard-grid {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+
+  .home-welcome-strip {
+    padding-inline: 0;
+  }
+
+  .home-dashboard-grid {
+    padding-inline: 0;
+  }
+
+  .home-dashboard-grid > *,
+  .home-left-rail,
+  .home-feed-column,
+  .home-right-rail {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .rail-profile-card,
+  .home-side-nav,
+  .krew-stories,
+  .post-composer,
+  .feed-post,
+  .right-widget,
+  .collab-card {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+
+  /* Keep the greeting, profile card, feed and widgets on one shared edge. */
+  .home-welcome-strip,
+  .home-dashboard-grid,
+  .home-dashboard-grid > *,
+  .home-dashboard-grid .rail-profile-card,
+  .home-dashboard-grid .home-side-nav,
+  .home-dashboard-grid .krew-stories,
+  .home-dashboard-grid .post-composer,
+  .home-dashboard-grid .feed-post,
+  .home-dashboard-grid .right-widget,
+  .home-dashboard-grid .collab-card {
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-dashboard {
+    padding-inline: 14px !important;
+  }
+}
