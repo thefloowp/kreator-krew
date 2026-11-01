@@ -181,7 +181,7 @@ function DiscoverPage({ connected, onConnect }: { connected: string[]; onConnect
 
   return <div className="discover-page">
     <section className="discover-hero">
-      <div className="discover-hero-copy"><span className="eyebrow">YOUR PEOPLE ARE HERE</span><h1>FIND YOUR<br/><em>CREATIVE KREW.</em></h1><p>Good things happen when the right people find each other. Meet the makers, thinkers, and doers shaping what comes next.</p><div className="discover-hero-stats"><span><b>{members.length.toString().padStart(2,'0')}</b> FOUNDING MEMBERS</span><i></i><span><b>01</b> CREATIVE COMMUNITY</span></div></div>
+      <div className="discover-hero-copy"><span className="eyebrow">YOUR PEOPLE ARE HERE</span><h1>FIND YOUR<br/><em>KREATOR KREW.</em></h1><p>Good things happen when the right people find each other. Meet the makers, thinkers, and doers shaping what comes next.</p><div className="discover-hero-stats"><span><b>{members.length.toString().padStart(2,'0')}</b> FOUNDING MEMBERS</span><i></i><span><b>01</b> CREATIVE COMMUNITY</span></div></div>
       <div className="discover-hero-art"><div className="discover-orbit">✳</div><div className="discover-note">YOUR NEXT<br/>COLLABORATOR<br/><strong>IS OUT THERE.</strong></div><div className="discover-hero-caption">CREATORS FIND CREATORS.<br/>THAT'S HOW GOOD THINGS START.</div></div>
     </section>
     <section className="discover-content">
