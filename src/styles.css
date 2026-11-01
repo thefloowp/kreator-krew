@@ -1707,40 +1707,72 @@ body {
 
 
 /* =======================================================
-   FINAL MOBILE GUTTER ALIGNMENT
-   Fix: dashboard content touching viewport edges.
+   MOBILE HOME — TRUE PARENT-ALIGNED WIDTH
+   The previous 100vw/negative-margin combination caused
+   the dashboard to drift off-center inside .kk-main.
 ======================================================= */
 @media (max-width: 700px) {
-  .home-dashboard {
-    width: 100%;
-    max-width: 100%;
-    margin-inline: auto;
-    padding-inline: 18px !important;
-    padding-bottom: 36px;
+  /* Give the page one consistent gutter at its outer frame. */
+  .kk-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Do not use 100vw or viewport-relative negative margins here. */
+  .kk-main > .home-dashboard,
+  .kk-main .home-dashboard {
+    display: block !important;
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 0 36px !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .home-dashboard,
+  .home-dashboard * {
+    box-sizing: border-box !important;
   }
 
   .home-welcome-strip,
-  .home-dashboard-grid {
-    width: 100%;
-    max-width: 100%;
-    margin-inline: 0;
-  }
-
-  .home-welcome-strip {
-    padding-inline: 0;
-  }
-
-  .home-dashboard-grid {
-    padding-inline: 0;
-  }
-
-  .home-dashboard-grid > *,
+  .home-dashboard-grid,
   .home-left-rail,
   .home-feed-column,
   .home-right-rail {
-    min-width: 0;
-    width: 100%;
-    max-width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+  }
+
+  .home-dashboard-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    padding: 16px 0 0 !important;
+  }
+
+  .home-left-rail,
+  .home-feed-column,
+  .home-right-rail {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
   }
 
   .rail-profile-card,
@@ -1750,28 +1782,42 @@ body {
   .feed-post,
   .right-widget,
   .collab-card {
-    width: 100%;
-    max-width: 100%;
-    margin-inline: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 
-  /* Keep the greeting, profile card, feed and widgets on one shared edge. */
-  .home-welcome-strip,
-  .home-dashboard-grid,
-  .home-dashboard-grid > *,
-  .home-dashboard-grid .rail-profile-card,
-  .home-dashboard-grid .home-side-nav,
-  .home-dashboard-grid .krew-stories,
-  .home-dashboard-grid .post-composer,
-  .home-dashboard-grid .feed-post,
-  .home-dashboard-grid .right-widget,
-  .home-dashboard-grid .collab-card {
-    box-sizing: border-box;
+  /* Keep the stories row horizontally scrollable inside its card. */
+  .krew-stories {
+    overflow: hidden;
+  }
+  .stories-bubbles {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* Composer content must wrap instead of forcing the card wider. */
+  .post-composer,
+  .post-composer form,
+  .composer-main,
+  .composer-bottom {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .post-composer textarea,
+  .post-composer input {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 }
 
 @media (max-width: 380px) {
-  .home-dashboard {
-    padding-inline: 14px !important;
+  .kk-main {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
   }
 }
