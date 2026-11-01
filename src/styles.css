@@ -946,3 +946,761 @@ body { font-size: 14px; }
     margin-right: 0;
   }
 }
+
+
+/* =======================================================
+   KREATOR KREW — UI DESIGN SYSTEM PASS
+   Unified typography, spacing, layout, and responsive rules
+======================================================= */
+
+:root {
+  --kk-font: "Inter", Arial, sans-serif;
+  --kk-ink: #17191c;
+  --kk-muted: #73777d;
+  --kk-soft-muted: #9a9da2;
+  --kk-paper: #fffdf8;
+  --kk-canvas: #f1f0ec;
+  --kk-line: #dedbd4;
+  --kk-navy: #101722;
+  --kk-orange: #f36b21;
+
+  /* Consistent spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 */
+  --kk-space-1: 4px;
+  --kk-space-2: 8px;
+  --kk-space-3: 12px;
+  --kk-space-4: 16px;
+  --kk-space-6: 24px;
+  --kk-space-8: 32px;
+  --kk-space-12: 48px;
+  --kk-space-16: 64px;
+
+  --kk-page-gutter: clamp(20px, 4vw, 64px);
+  --kk-content-max: 1440px;
+  --kk-radius: 2px;
+  --kk-shadow-card: 0 2px 10px rgba(16, 23, 34, .045);
+}
+
+html {
+  font-family: var(--kk-font);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-padding-top: 90px;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--kk-font);
+}
+
+body {
+  color: var(--kk-ink);
+  background: var(--kk-canvas);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.app-shell,
+.kk-app {
+  color: var(--kk-ink);
+  font-family: var(--kk-font);
+  background: var(--kk-canvas);
+}
+
+.app-shell *,
+.kk-app * {
+  box-sizing: border-box;
+}
+
+/* Global type hierarchy */
+.kk-app h1,
+.kk-app h2,
+.kk-app h3,
+.kk-app h4,
+.kk-app .footer-mark,
+.kk-app .wordmark {
+  font-family: var(--kk-font);
+  font-synthesis: none;
+}
+
+.kk-app h1,
+.kk-app h2,
+.kk-app h3,
+.kk-app h4 {
+  color: inherit;
+}
+
+.kk-app h1,
+.kk-app .inner-page-hero h1,
+.kk-app .discover-hero-copy h1 {
+  font-weight: 900;
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+.kk-app h2,
+.kk-app .feed-intro h2,
+.kk-app .section-heading h3,
+.kk-app .discover-intro-row h2 {
+  font-weight: 900;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+}
+
+.kk-app h3,
+.kk-app h4 {
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+}
+
+.kk-app p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.kk-app .eyebrow,
+.kk-app .discover-results-heading,
+.kk-app .directory-tools,
+.kk-app .post-kind {
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: 800;
+  letter-spacing: 1.15px;
+}
+
+.kk-app button,
+.kk-app input,
+.kk-app select,
+.kk-app textarea {
+  font-size: inherit;
+}
+
+.kk-app button {
+  line-height: 1.2;
+}
+
+/* Consistent global page frame */
+.kk-main {
+  width: 100%;
+  max-width: var(--kk-content-max);
+  margin-inline: auto;
+  padding-inline: var(--kk-page-gutter);
+  min-width: 0;
+}
+
+.page-wrap,
+.home-dashboard {
+  width: 100%;
+  max-width: var(--kk-content-max);
+  margin-inline: auto;
+}
+
+.page-toolbar {
+  gap: var(--kk-space-6);
+  margin: 0 0 var(--kk-space-6);
+  padding-top: var(--kk-space-6);
+}
+
+.page-toolbar h1 {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 900;
+  letter-spacing: -.05em;
+  line-height: 1.08;
+}
+
+.inner-page-hero {
+  padding-block: clamp(44px, 6vw, 76px) clamp(30px, 4vw, 48px);
+}
+
+.inner-page-hero h1 {
+  max-width: 100%;
+  font-size: clamp(48px, 7vw, 92px);
+  font-weight: 900;
+  letter-spacing: -.06em;
+  line-height: .94;
+}
+
+.inner-page-hero > p {
+  max-width: 620px;
+  margin-top: var(--kk-space-4);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Header consistency */
+.kk-topbar,
+.topbar {
+  min-height: 72px;
+}
+
+.wordmark {
+  font-weight: 900;
+  letter-spacing: -.065em;
+  line-height: .86;
+}
+
+.main-nav {
+  gap: clamp(18px, 3vw, 44px);
+}
+
+.main-nav button,
+.main-nav a {
+  font-family: var(--kk-font);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+/* Home: one coherent 3-column dashboard */
+.home-dashboard {
+  padding: 0 0 var(--kk-space-12);
+}
+
+.home-welcome-strip {
+  align-items: center;
+  gap: var(--kk-space-8);
+  padding-block: clamp(26px, 3.5vw, 42px) var(--kk-space-6);
+}
+
+.home-welcome-strip h1 {
+  margin: 8px 0 6px;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 900;
+  letter-spacing: -.055em;
+  line-height: 1.08;
+}
+
+.home-welcome-strip p {
+  max-width: 650px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.home-dashboard-grid {
+  grid-template-columns: minmax(210px, 250px) minmax(0, 1fr) minmax(240px, 285px);
+  gap: clamp(16px, 2vw, 24px);
+  padding-top: var(--kk-space-6);
+}
+
+.home-left-rail,
+.home-right-rail {
+  gap: var(--kk-space-4);
+}
+
+.home-feed-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kk-space-4);
+  min-width: 0;
+}
+
+.rail-profile-card,
+.home-side-nav,
+.krew-stories,
+.post-composer,
+.feed-post,
+.right-widget,
+.collab-card {
+  border: 1px solid var(--kk-line);
+  box-shadow: var(--kk-shadow-card);
+}
+
+.feed-intro {
+  gap: var(--kk-space-4);
+  margin-bottom: var(--kk-space-2);
+}
+
+.feed-intro h2 {
+  margin: 4px 0 0;
+  font-size: clamp(25px, 2.4vw, 32px);
+  font-weight: 900;
+  letter-spacing: -.05em;
+}
+
+.feed-post-list {
+  display: grid;
+  gap: var(--kk-space-4);
+}
+
+.post-head,
+.post-actions,
+.post-engagement {
+  gap: var(--kk-space-3);
+}
+
+.post-copy {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.post-actions button {
+  min-height: 42px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Discover: align hero, controls, cards and results to same frame */
+.discover-page {
+  width: 100%;
+  min-width: 0;
+}
+
+.discover-hero {
+  width: 100%;
+  min-width: 0;
+  padding: clamp(42px, 5vw, 68px) clamp(24px, 5vw, 64px);
+}
+
+.discover-hero-copy h1 {
+  font-size: clamp(54px, 7vw, 96px);
+  font-weight: 900;
+  letter-spacing: -.065em;
+  line-height: .92;
+}
+
+.discover-hero-copy > p {
+  max-width: 560px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.discover-content {
+  width: 100%;
+  padding-block: clamp(36px, 4vw, 56px) clamp(48px, 5vw, 72px);
+}
+
+.discover-intro-row {
+  margin-bottom: var(--kk-space-6);
+}
+
+.discover-intro-row h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 900;
+  letter-spacing: -.055em;
+}
+
+.discover-controls {
+  gap: var(--kk-space-4);
+  padding: var(--kk-space-3) var(--kk-space-4);
+}
+
+.discover-search input {
+  min-height: 40px;
+  font-size: 14px;
+}
+
+.filter-toggle,
+.sort-select,
+.sort-select select,
+.discover-categories button {
+  font-family: var(--kk-font);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.discover-member-grid {
+  gap: clamp(12px, 1.5vw, 18px);
+}
+
+.discover-member-card {
+  padding: clamp(16px, 1.6vw, 22px);
+  box-shadow: var(--kk-shadow-card);
+}
+
+.discover-member-identity h3 {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+
+.discover-member-role {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.discover-member-location {
+  font-size: 11px;
+}
+
+.discover-member-tags span {
+  font-size: 10px;
+}
+
+.discover-connect,
+.discover-connected,
+.discover-view {
+  min-height: 40px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* Opportunities, events and stories: same vertical rhythm */
+.listing-section,
+.events-list,
+.story-grid-page {
+  padding-block: var(--kk-space-8) var(--kk-space-12);
+}
+
+.job-card,
+.event-card,
+.story-card {
+  gap: var(--kk-space-6);
+  padding: clamp(18px, 2vw, 26px);
+  margin-bottom: var(--kk-space-3);
+  border-color: var(--kk-line);
+  box-shadow: var(--kk-shadow-card);
+}
+
+.job-main h2,
+.event-info h2 {
+  font-size: clamp(18px, 2vw, 23px);
+  font-weight: 800;
+  letter-spacing: -.035em;
+  line-height: 1.2;
+}
+
+.job-main p,
+.event-info p {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.tag-row span {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Member profile / Krew Page */
+.member-page {
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(18px, 3vw, 40px);
+}
+
+.profile-column {
+  padding-right: clamp(16px, 2vw, 28px);
+}
+
+.profile-name-row h2 {
+  font-family: var(--kk-font);
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 900;
+  letter-spacing: -.055em;
+  line-height: 1.02;
+}
+
+.welcome-copy h2 {
+  font-family: var(--kk-font);
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 900;
+  letter-spacing: -.06em;
+  line-height: .98;
+}
+
+.welcome-copy h3,
+.section-heading h3,
+.interests-section h3 {
+  font-family: var(--kk-font);
+  font-weight: 850;
+  letter-spacing: -.04em;
+}
+
+.project-card h4 {
+  font-family: var(--kk-font);
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+
+/* Cards and interaction controls share one radius and tactile size */
+.kk-app .customize-button,
+.kk-app .primary-cta,
+.kk-app .save-button,
+.kk-app .discover-connect,
+.kk-app .discover-connected,
+.kk-app .discover-view,
+.kk-app .filter-toggle {
+  border-radius: var(--kk-radius);
+}
+
+.kk-app button:focus-visible,
+.kk-app a:focus-visible,
+.kk-app input:focus-visible,
+.kk-app select:focus-visible,
+.kk-app textarea:focus-visible {
+  outline: 3px solid rgba(243, 107, 33, .42);
+  outline-offset: 2px;
+}
+
+/* Tablet */
+@media (max-width: 1050px) {
+  .home-dashboard-grid {
+    grid-template-columns: minmax(190px, 220px) minmax(0, 1fr);
+  }
+  .home-right-rail {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+  .discover-member-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .member-page {
+    grid-template-columns: minmax(250px, 330px) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --kk-page-gutter: 18px;
+  }
+
+  .kk-main {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: var(--kk-page-gutter);
+  }
+
+  .topbar,
+  .kk-topbar {
+    min-height: 76px;
+    padding-inline: 18px;
+  }
+
+  .home-dashboard {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 0 36px;
+  }
+
+  .home-welcome-strip {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    padding-block: 26px 22px;
+  }
+
+  .home-welcome-strip h1 {
+    font-size: clamp(27px, 7.4vw, 34px);
+    line-height: 1.08;
+  }
+
+  .home-welcome-strip p {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .home-dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    width: 100%;
+    padding-top: 16px;
+  }
+
+  .home-left-rail,
+  .home-feed-column,
+  .home-right-rail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 14px;
+  }
+
+  .rail-profile-card,
+  .home-side-nav,
+  .krew-stories,
+  .post-composer,
+  .feed-post,
+  .right-widget,
+  .collab-card {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .home-right-rail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-side-nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 12px;
+  }
+
+  .home-side-nav button {
+    min-height: 72px;
+    padding: 9px 4px;
+    font-size: 11px;
+  }
+
+  .feed-intro h2 {
+    font-size: 27px;
+  }
+
+  .post-copy {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .discover-hero {
+    padding: 38px 22px 30px;
+  }
+
+  .discover-hero-copy h1 {
+    font-size: clamp(42px, 11.5vw, 62px);
+    line-height: .95;
+    letter-spacing: -.065em;
+  }
+
+  .discover-hero-copy > p {
+    font-size: 14px;
+  }
+
+  .discover-content {
+    padding-block: 34px 48px;
+  }
+
+  .discover-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .discover-search {
+    width: 100%;
+    max-width: none;
+  }
+
+  .discover-control-actions {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .discover-member-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .discover-member-card {
+    padding: 17px;
+  }
+
+  .inner-page-hero {
+    padding-block: 38px 30px;
+  }
+
+  .inner-page-hero h1 {
+    font-size: clamp(43px, 11vw, 64px);
+    line-height: .96;
+  }
+
+  .inner-page-hero > p {
+    font-size: 14px;
+  }
+
+  .listing-section,
+  .events-list,
+  .story-grid-page {
+    padding-block: 24px 42px;
+  }
+
+  .job-card,
+  .event-card,
+  .story-card {
+    padding: 17px;
+    gap: 14px;
+  }
+
+  .job-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .job-side {
+    width: 100%;
+  }
+
+  .member-page {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .profile-column {
+    width: 100%;
+    padding: 0;
+  }
+
+  .personal-space {
+    width: 100%;
+    padding: 0;
+  }
+
+  .welcome-block {
+    min-height: 0;
+    padding: 28px 4px 30px;
+  }
+
+  .welcome-copy h2 {
+    font-size: clamp(38px, 10vw, 56px);
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .bottom-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .kk-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-inline: calc(var(--kk-page-gutter) * -1);
+    padding: 28px var(--kk-page-gutter);
+  }
+
+  .kk-footer > span {
+    font-size: 9px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 380px) {
+  :root { --kk-page-gutter: 14px; }
+  .topbar, .kk-topbar { padding-inline: 14px; }
+  .discover-hero { padding-inline: 18px; }
+  .home-side-nav { gap: 3px; padding: 8px; }
+  .home-side-nav button { font-size: 10px; }
+  .project-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .kk-app *,
+  .kk-app *::before,
+  .kk-app *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
