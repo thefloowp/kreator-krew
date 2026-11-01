@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Bell, BriefcaseBusiness, CalendarDays, Compass, Heart, Home, Mail, MapPin, MessageCircle, Search, Users, ArrowUpRight, Bookmark, Menu, X, Camera, Palette, Settings2, Plus, Image as ImageIcon, Smile, Send, MoreHorizontal, MessageSquare, Share2, TrendingUp, UsersRound, Hash, Sparkles } from 'lucide-react'
+import { Bell, BriefcaseBusiness, CalendarDays, Compass, Heart, Home, Mail, MapPin, MessageCircle, Search, Users, ArrowUpRight, Bookmark, Menu, X, Camera, Palette, Settings2, Plus, Image as ImageIcon, Smile, Send, MoreHorizontal, MessageSquare, Share2, TrendingUp, UsersRound, Hash, Sparkles, SlidersHorizontal, UserPlus } from 'lucide-react'
 
 type Page = 'Home' | 'Discover' | 'Opportunities' | 'Events' | 'Stories' | 'My Krew Page'
 
@@ -28,7 +28,6 @@ const stories = [
 function App() {
   const [page, setPage] = useState<Page>('Home')
   const [mobileMenu, setMobileMenu] = useState(false)
-  const [query, setQuery] = useState('')
   const [savedJobs, setSavedJobs] = useState<string[]>([])
   const [connected, setConnected] = useState<string[]>([])
   const [liked, setLiked] = useState(false)
@@ -38,7 +37,6 @@ function App() {
   const navItems: { label: Page; icon: typeof Home }[] = [
     { label: 'Home', icon: Home }, { label: 'Discover', icon: Compass }, { label: 'Opportunities', icon: BriefcaseBusiness }, { label: 'Events', icon: CalendarDays }, { label: 'Stories', icon: Camera },
   ]
-  const filteredMembers = members.filter(member => `${member.name} ${member.role} ${member.skills.join(' ')}`.toLowerCase().includes(query.toLowerCase()))
 
   return <div className="app-shell kk-app">
     <header className="topbar kk-topbar">
@@ -53,8 +51,7 @@ function App() {
     <main className="kk-main">
       {page === 'Home' && <HomeFeed onNavigate={go} />}
 
-      {page === 'Discover' && <PageHeader eyebrow="YOUR PEOPLE ARE HERE" title={<>EXPLORE THE<br/><em>KREW.</em></>} description="Find your next collaborator, creative partner, mentor, or just someone who gets it." />}
-      {page === 'Discover' && <section className="directory-section"><div className="directory-tools"><div className="search-field"><Search size={18}/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search people, skills, or disciplines..."/></div><span>{filteredMembers.length} MEMBERS</span></div><div className="member-grid directory-grid">{filteredMembers.map(member => <MemberCard key={member.handle} member={member} connected={connected.includes(member.handle)} onConnect={() => setConnected(prev => prev.includes(member.handle) ? prev.filter(x => x !== member.handle) : [...prev, member.handle])}/>)}</div>{filteredMembers.length === 0 && <p className="empty-state">No members found. Try another name or skill.</p>}</section>}
+      {page === 'Discover' && <DiscoverPage connected={connected} onConnect={(handle) => setConnected(prev => prev.includes(handle) ? prev.filter(x => x !== handle) : [...prev, handle])} />}
 
       {page === 'Opportunities' && <><PageHeader eyebrow="MAKE YOUR NEXT MOVE" title={<>OPPORTUNITIES<br/><em>LIVE HERE.</em></>} description="A growing board of projects, freelance work, and roles worth checking out."/><section className="listing-section"><div className="directory-tools"><span>CURATED FOR THE KREW</span><span>{opportunities.length} LISTINGS</span></div>{opportunities.map(job => <article className="job-card" key={job.title}><div className="job-main"><span className="eyebrow">{job.type}{job.featured ? ' · KREW PICK' : ''}</span><h2>{job.title}</h2><p>{job.company} <span>·</span> {job.location}</p><div className="tag-row">{job.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div><div className="job-side"><strong>{job.pay}</strong><div><button className="save-button" onClick={() => setSavedJobs(prev => prev.includes(job.title) ? prev.filter(x => x !== job.title) : [...prev, job.title])}><Bookmark size={16} fill={savedJobs.includes(job.title) ? 'currentColor' : 'none'}/>{savedJobs.includes(job.title) ? 'SAVED' : 'SAVE'}</button><button className="primary-cta small-cta" onClick={() => alert('This is a demo listing. Application links will be connected later.')}>VIEW DETAILS <ArrowUpRight size={15}/></button></div></div></article>)}</section></>}
 
@@ -160,6 +157,52 @@ function HomeFeed({ onNavigate }: { onNavigate: (page: Page) => void }) {
         <div className="right-rail-footer">ABOUT KREATOR KREW · COMMUNITY GUIDELINES · PRIVACY<br/>MADE FOR THE KREW. PHILIPPINES. © 2026</div>
       </aside>
     </div>
+  </div>
+}
+
+
+function DiscoverPage({ connected, onConnect }: { connected: string[]; onConnect: (handle: string) => void }) {
+  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('Everyone')
+  const [sort, setSort] = useState('Recommended')
+  const [showFilters, setShowFilters] = useState(false)
+  const categoryOptions = ['Everyone', 'Design & Branding', 'Video & Motion', 'Photography', 'Marketing & Strategy', 'Writing & Content', 'Development & Tech']
+  const categoryFor = (member: typeof members[number]) => {
+    if (member.skills.some(skill => ['Photography', 'Film', 'Direction'].includes(skill))) return 'Photography'
+    if (member.skills.some(skill => ['Strategy', 'Research', 'Culture'].includes(skill))) return 'Marketing & Strategy'
+    if (member.skills.some(skill => ['Illustration', 'Art', 'Editorial'].includes(skill))) return 'Design & Branding'
+    return 'Design & Branding'
+  }
+  const filtered = members.filter(member => {
+    const matchesSearch = `${member.name} ${member.handle} ${member.role} ${member.location} ${member.skills.join(' ')}`.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = category === 'Everyone' || categoryFor(member) === category || (category === 'Video & Motion' && member.skills.some(skill => ['Motion', 'Film', 'Video'].includes(skill)))
+    return matchesSearch && matchesCategory
+  }).sort((a,b) => sort === 'Name A–Z' ? a.name.localeCompare(b.name) : 0)
+
+  return <div className="discover-page">
+    <section className="discover-hero">
+      <div className="discover-hero-copy"><span className="eyebrow">YOUR PEOPLE ARE HERE</span><h1>FIND YOUR<br/><em>CREATIVE KREW.</em></h1><p>Good things happen when the right people find each other. Meet the makers, thinkers, and doers shaping what comes next.</p><div className="discover-hero-stats"><span><b>{members.length.toString().padStart(2,'0')}</b> FOUNDING MEMBERS</span><i></i><span><b>01</b> CREATIVE COMMUNITY</span></div></div>
+      <div className="discover-hero-art"><div className="discover-orbit">✳</div><div className="discover-note">YOUR NEXT<br/>COLLABORATOR<br/><strong>IS OUT THERE.</strong></div><div className="discover-hero-caption">CREATORS FIND CREATORS.<br/>THAT'S HOW GOOD THINGS START.</div></div>
+    </section>
+    <section className="discover-content">
+      <div className="discover-intro-row"><div><span className="eyebrow">MEET THE PEOPLE BEHIND THE WORK</span><h2>THE KREW DIRECTORY</h2></div><div className="discover-count"><strong>{filtered.length.toString().padStart(2,'0')}</strong><span>PEOPLE FOUND</span></div></div>
+      <div className="discover-controls">
+        <label className="discover-search"><Search size={19}/><input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by name, skill, role, or location..."/>{search && <button onClick={() => setSearch('')} aria-label="Clear search"><X size={16}/></button>}</label>
+        <div className="discover-control-actions"><button className={`filter-toggle ${showFilters ? 'active' : ''}`} onClick={() => setShowFilters(!showFilters)}><SlidersHorizontal size={16}/> Filters</button><label className="sort-select">SORT BY <select value={sort} onChange={e => setSort(e.target.value)}><option>Recommended</option><option>Name A–Z</option></select></label></div>
+      </div>
+      <div className="discover-categories">{categoryOptions.map(item => <button key={item} className={category === item ? 'category-active' : ''} onClick={() => setCategory(item)}>{item === 'Everyone' ? <Users size={14}/> : <Hash size={13}/>} {item}</button>)}</div>
+      {showFilters && <div className="discover-filter-panel"><div><span className="eyebrow">QUICK FILTER</span><p>Browse by creative discipline. More filters will be added as the community grows.</p></div><button onClick={() => {setCategory('Everyone');setSearch('');setSort('Recommended')}}>CLEAR ALL <X size={13}/></button></div>}
+      <div className="discover-results-heading"><span>MEMBERS OF THE KREW</span><span>{filtered.length} {filtered.length === 1 ? 'RESULT' : 'RESULTS'}</span></div>
+      {filtered.length > 0 ? <div className="discover-member-grid">{filtered.map((member, index) => <article className="discover-member-card" key={member.handle}>
+        <div className="discover-card-top"><span className="discover-card-number">KK / {String(index + 1).padStart(2,'0')}</span><span className="discover-online"><i/> FOUNDING MEMBER</span></div>
+        <div className="discover-member-identity"><div className="discover-avatar" style={{background:member.color}}>{member.initials}</div><div><h3>{member.name}</h3><span>{member.handle}</span></div><button className="discover-card-more" aria-label="More member options"><MoreHorizontal size={19}/></button></div>
+        <p className="discover-member-role">{member.role}</p>
+        <span className="discover-member-location"><MapPin size={13}/>{member.location}</span>
+        <div className="discover-member-tags">{member.skills.map(skill => <span key={skill}>{skill}</span>)}</div>
+        <div className="discover-card-bottom"><button className={connected.includes(member.handle) ? 'discover-connected' : 'discover-connect'} onClick={() => onConnect(member.handle)}>{connected.includes(member.handle) ? '✓ CONNECTED' : <><UserPlus size={14}/> CONNECT</>}</button><button className="discover-view" onClick={() => alert(`The public Krew Page for ${member.name} will open when member profile routing is connected.`)}>VIEW PAGE <ArrowUpRight size={14}/></button></div>
+      </article>)}</div> : <div className="discover-empty"><Users size={30}/><h3>No creatives found just yet.</h3><p>Try another search or explore a different discipline.</p><button onClick={() => {setCategory('Everyone');setSearch('')}}>RESET DISCOVER</button></div>}
+      <div className="discover-bottom-note"><Sparkles size={17}/><span>THE KREW IS JUST GETTING STARTED. KNOW SOMEONE WHO BELONGS HERE?</span><button onClick={() => alert('Invitations will be enabled when member accounts are connected.')}>INVITE A CREATIVE ↗</button></div>
+    </section>
   </div>
 }
 
