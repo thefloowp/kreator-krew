@@ -593,3 +593,245 @@ html, body { overflow-x: clip; }
     padding-right: 24px;
   }
 }
+
+
+/* -------------------------------------------------------
+   MOBILE REFINEMENTS + GLOBAL TYPE SYSTEM
+-------------------------------------------------------- */
+:root {
+  font-family: "Inter", Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+html, body, button, input, select, textarea {
+  font-family: "Inter", Arial, sans-serif;
+}
+body { font-size: 14px; }
+
+/* Keep all interface typography on one deliberate scale */
+.kk-app { font-family: "Inter", Arial, sans-serif; }
+.kk-app p { font-size: 13px; line-height: 1.65; }
+.kk-app .eyebrow { font-size: 10px; line-height: 1.45; letter-spacing: 1.35px; }
+.kk-app .main-nav button { font-size: 11px !important; }
+.kk-app .directory-card h3,
+.kk-app .discover-member-identity h3 { font-family: "Inter", Arial, sans-serif; font-weight: 750; }
+.kk-app h1, .kk-app h2, .kk-app h3, .kk-app h4,
+.kk-app .hero-sticker, .kk-app .story-visual strong,
+.kk-app .footer-mark {
+  font-family: "Inter", Arial, sans-serif;
+}
+.kk-app .hero-copy h1,
+.kk-app .inner-page-hero h1,
+.kk-app .discover-hero-copy h1 { font-weight: 900; letter-spacing: -.055em; }
+.kk-app .section-top h2,
+.kk-app .feed-intro h2,
+.kk-app .discover-intro-row h2 { font-weight: 850; letter-spacing: -.045em; }
+
+/* Desktop and tablet: preserve the profile card */
+.rail-profile-card { display: block; }
+
+/* Use text glyph presentation for the Krew star, never a colored emoji */
+.home-welcome-strip h1 > span {
+  color: #f36b21;
+  font-family: "Arial", sans-serif;
+  font-variant-emoji: text;
+  font-size: .85em;
+  line-height: 1;
+}
+.discover-orbit {
+  color: #f36b21;
+  font-family: "Arial", sans-serif;
+  font-variant-emoji: text;
+}
+
+/* Mobile layout corrections */
+@media (max-width: 620px) {
+  .home-dashboard {
+    width: 100%;
+    padding: 0 16px 36px;
+  }
+  .home-welcome-strip {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 28px 0 22px;
+  }
+  .home-welcome-strip h1 {
+    font-size: clamp(27px, 7vw, 34px);
+    line-height: 1.12;
+    letter-spacing: -.045em;
+  }
+  .home-welcome-strip p {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .welcome-profile-link {
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 0 14px;
+    font-size: 10px;
+  }
+  .home-dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 16px;
+  }
+  .home-left-rail,
+  .home-center-feed,
+  .home-right-rail {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  /* The profile card was hidden by the old mobile rule. Keep it visible. */
+  .rail-profile-card {
+    display: block !important;
+    margin: 0 0 14px;
+    padding: 0 16px 16px;
+  }
+  .rail-cover { height: 62px; }
+  .rail-avatar {
+    width: 58px;
+    height: 58px;
+    margin-top: -29px;
+    font-size: 16px;
+  }
+  .rail-profile-card > strong { font-size: 16px; }
+  .rail-profile-card > span { font-size: 11px; }
+  .rail-profile-card > small { font-size: 11px; }
+  .rail-stats b { font-size: 17px; }
+  .rail-stats small { font-size: 10px; }
+  .rail-profile-card > button { min-height: 42px; font-size: 10px; }
+  .home-side-nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+    padding: 12px;
+    margin-bottom: 4px;
+  }
+  .home-side-nav button {
+    min-height: 74px;
+    justify-content: center;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0;
+    padding: 9px 4px;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+  .home-side-nav button span { display: none; }
+  .feed-intro { align-items: center; gap: 10px; }
+  .feed-intro h2 { font-size: 25px; line-height: 1.12; }
+  .feed-filter { min-height: 42px; padding: 0 12px; font-size: 11px; }
+  .stories-heading strong, .widget-heading strong { font-size: 11px; }
+  .stories-heading button, .widget-heading button { font-size: 10px; }
+  .story-bubble > span { width: 54px; height: 54px; font-size: 14px; }
+  .story-bubble small { font-size: 10px; }
+  .composer-card, .feed-composer { padding: 16px; }
+  .composer-placeholder, .composer-input { font-size: 13px; line-height: 1.5; }
+  .composer-bottom > div button { font-size: 10px; }
+  .publish-button { min-height: 40px; font-size: 10px; }
+  .post-author strong { font-size: 13px; }
+  .post-author span { font-size: 10px; }
+  .post-kind { font-size: 9px; }
+  .post-copy { font-size: 13px; line-height: 1.65; }
+  .post-engagement { font-size: 10px; }
+  .post-actions button { min-height: 40px; font-size: 10px; }
+  .suggested-person b { font-size: 11px; }
+  .suggested-person small { font-size: 9px; }
+  .mini-event strong { font-size: 10px; }
+  .mini-event small { font-size: 9px; }
+
+  /* Discover decorative art: keep the orange note readable and remove emoji-like burst */
+  .discover-hero {
+    display: block;
+    min-height: 0;
+    padding: 42px 24px 34px;
+  }
+  .discover-hero-copy h1 {
+    max-width: 100%;
+    margin: 20px 0 18px;
+    font-size: clamp(43px, 11.5vw, 62px);
+    line-height: .94;
+    letter-spacing: -.06em;
+    overflow-wrap: normal;
+  }
+  .discover-hero-copy > p {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .discover-hero-stats {
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin-top: 22px;
+    font-size: 9px;
+  }
+  .discover-hero-stats b { font-size: 17px; }
+  .discover-hero-art {
+    display: flex;
+    height: auto;
+    min-height: 170px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    padding: 8px 0 38px;
+  }
+  .discover-orbit { display: none !important; }
+  .discover-note {
+    position: relative;
+    top: auto;
+    left: auto;
+    max-width: min(100%, 330px);
+    padding: 22px 24px;
+    font-size: clamp(19px, 5vw, 24px);
+    line-height: 1.04;
+    letter-spacing: -.045em;
+    transform: rotate(-3deg);
+    box-shadow: 8px 8px 0 #f3eee5;
+  }
+  .discover-note strong { margin-top: 5px; }
+  .discover-hero-caption {
+    right: 0;
+    bottom: 0;
+    font-size: 9px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-align: right;
+  }
+
+  /* Consistent readable type across Discover and all other pages */
+  .discover-content { padding: 34px 0 48px; }
+  .discover-intro-row h2 { font-size: 27px; line-height: 1.08; }
+  .discover-count strong { font-size: 27px; }
+  .discover-count span,
+  .discover-results-heading { font-size: 9px; }
+  .discover-search input { font-size: 13px; }
+  .discover-search { min-height: 40px; }
+  .filter-toggle, .sort-select, .sort-select select { font-size: 11px; }
+  .discover-categories button { font-size: 10px; }
+  .discover-card-number, .discover-online { font-size: 9px; }
+  .discover-member-identity h3 { font-size: 16px; }
+  .discover-member-identity > div > span,
+  .discover-member-role,
+  .discover-member-location { font-size: 11px; }
+  .discover-member-tags span { font-size: 10px; }
+  .discover-connect, .discover-connected, .discover-view { min-height: 42px; font-size: 10px; }
+  .discover-bottom-note span { font-size: 10px; line-height: 1.55; }
+  .discover-bottom-note button { min-height: 38px; font-size: 9px; }
+
+  /* General mobile minimums for the remaining sections */
+  .inner-page-hero > p,
+  .home-intro p,
+  .feature-block p { font-size: 14px; line-height: 1.65; }
+  .directory-card > p,
+  .job-main > p,
+  .event-info p { font-size: 12px; }
+  .tag-row span { font-size: 10px; }
+  .job-side > strong { font-size: 13px; }
+  .story-meta, .story-read { font-size: 10px; }
+  .kk-footer > span { font-size: 9px; }
+}
