@@ -209,9 +209,6 @@ function DiscoverPage({ connected, onConnect }: { connected: string[]; onConnect
 function PageHeader({ eyebrow, title, description }: { eyebrow: string; title: React.ReactNode; description: string }) {
   return <section className="inner-page-hero"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{description}</p></section>
 }
-: { member: typeof members[number]; connected: boolean; onConnect: () => void }) {
-  return <article className="directory-card"><div className="member-avatar" style={{ background: member.color }}>{member.initials}</div><span className="member-location"><MapPin size={12}/>{member.location}</span><h3>{member.name}</h3><p>{member.role}</p><div className="tag-row">{member.skills.map(skill => <span key={skill}>{skill}</span>)}</div><button className={connected ? 'connected-button' : 'connect-card-button'} onClick={onConnect}>{connected ? '✓ CONNECTED' : '+ CONNECT'}</button></article>
-}
 function StoryCard({ story, onClick }: { story: typeof stories[number]; onClick: () => void }) {
   return <button className="story-card" onClick={onClick}><div className={`story-visual ${story.image}`}><span>KK / JOURNAL</span><strong>{story.category}</strong><i>✳</i></div><div className="story-meta"><span>{story.date}</span><span>{story.author}</span></div><h3>{story.title}</h3><span className="story-read">READ STORY ↗</span></button>
 }
