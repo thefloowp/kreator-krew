@@ -1821,3 +1821,56 @@ body {
     padding-right: 14px !important;
   }
 }
+
+
+/* =======================================================
+   DISCOVER HERO — MOBILE FULL-BLEED WIDTH CORRECTION
+   Aligns the hero to the viewport while preserving the
+   same 18px content gutter used by the mobile page frame.
+======================================================= */
+@media (max-width: 700px) {
+  .discover-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: clip;
+  }
+
+  .discover-page .discover-hero {
+    display: block !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    width: calc(100% + 36px) !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: -18px !important;
+    margin-right: -18px !important;
+    padding: 42px 24px 34px !important;
+    overflow: hidden !important;
+  }
+
+  .discover-page .discover-hero-copy,
+  .discover-page .discover-hero-copy h1,
+  .discover-page .discover-hero-copy > p {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word;
+  }
+
+  .discover-page .discover-hero-art {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .discover-page .discover-hero {
+    width: calc(100% + 28px) !important;
+    margin-left: -14px !important;
+    margin-right: -14px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
