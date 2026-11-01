@@ -835,3 +835,114 @@ body { font-size: 14px; }
   .story-meta, .story-read { font-size: 10px; }
   .kk-footer > span { font-size: 9px; }
 }
+
+
+/* -------------------------------------------------------
+   MOBILE WIDTH + EVEN GUTTER CORRECTION
+   Prevent nested dashboard padding and desktop-width rails
+   from creating a narrow, left-aligned content column.
+-------------------------------------------------------- */
+@media (max-width: 620px) {
+  html, body, #root, .kk-app {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .kk-main {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .home-dashboard {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0 0 36px;
+  }
+
+  .home-welcome-strip,
+  .home-dashboard-grid,
+  .home-left-rail,
+  .home-center-feed,
+  .home-right-rail {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .home-dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .home-left-rail,
+  .home-center-feed,
+  .home-right-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .rail-profile-card,
+  .home-side-nav,
+  .rail-tags,
+  .right-widget,
+  .krew-stories,
+  .post-composer,
+  .feed-post,
+  .krew-prompt,
+  .trending-widget,
+  .upcoming-widget,
+  .people-widget {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .home-dashboard * {
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .home-dashboard img,
+  .home-dashboard video,
+  .home-dashboard canvas,
+  .home-dashboard svg {
+    max-width: 100%;
+  }
+
+  /* Keep the right rail in normal document flow and full width. */
+  .home-right-rail {
+    display: flex;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Consistent gutters for other mobile pages too. */
+  .discover-content,
+  .discover-hero,
+  .inner-page-hero,
+  .directory-section,
+  .listing-section,
+  .events-list,
+  .story-grid-page {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
