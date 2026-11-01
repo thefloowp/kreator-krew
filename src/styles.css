@@ -1896,3 +1896,58 @@ body {
     right: auto !important;
   }
 }
+
+
+/* ==========================================================
+   DISCOVER MOBILE — FIX THE ACTUAL OUTER PAGE GUTTER
+   The hero is a child of .kk-main. Remove the main container's
+   mobile side padding only on Discover, then give the content
+   section its own balanced inner gutter.
+========================================================== */
+@media (max-width: 700px) {
+  .kk-main:has(> .discover-page) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-inline: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .kk-main:has(> .discover-page) > .discover-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .kk-main:has(> .discover-page) .discover-hero {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .kk-main:has(> .discover-page) .discover-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .kk-main:has(> .discover-page) .discover-content {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+}
