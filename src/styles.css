@@ -3123,3 +3123,237 @@ body {
     transition-duration: .01ms !important;
   }
 }
+
+
+/* ==========================================================
+   FINAL MOBILE HEADER + EVENT METADATA FIX
+========================================================== */
+
+/* The header uses three explicit zones on phones so the
+   centered wordmark cannot collide with the message/avatar area. */
+@media (max-width: 700px) {
+  .kk-topbar,
+  .topbar {
+    display: grid !important;
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 8px;
+    padding-inline: 16px !important;
+  }
+
+  .kk-topbar .mobile-menu-button {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    z-index: 2;
+    width: 40px;
+    min-width: 40px;
+    justify-self: start;
+  }
+
+  .kk-topbar .wordmark {
+    position: static !important;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    align-self: center;
+    width: max-content;
+    max-width: 100%;
+    margin: 0;
+    transform: none !important;
+    font-size: clamp(17px, 4.5vw, 21px);
+    line-height: .88;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  .kk-topbar .wordmark span {
+    right: -9px;
+    top: -2px;
+  }
+
+  .kk-topbar .top-actions {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-self: end;
+    gap: 9px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .kk-topbar .top-actions > button[aria-label="Search"],
+  .kk-topbar .top-actions > button[aria-label="Notifications"] {
+    display: none !important;
+  }
+
+  .kk-topbar .top-actions > button[aria-label="Messages"] {
+    display: grid !important;
+    width: 32px;
+    height: 38px;
+    padding: 4px;
+  }
+
+  .kk-topbar .top-actions > .mini-avatar {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 370px) {
+  .kk-topbar,
+  .topbar {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    column-gap: 5px;
+    padding-inline: 11px !important;
+  }
+
+  .kk-topbar .mobile-menu-button {
+    width: 34px;
+    min-width: 34px;
+  }
+
+  .kk-topbar .top-actions {
+    gap: 5px;
+  }
+
+  .kk-topbar .top-actions > button[aria-label="Messages"] {
+    width: 28px;
+  }
+
+  .kk-topbar .top-actions > .mini-avatar {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .kk-topbar .wordmark {
+    font-size: 17px;
+  }
+}
+
+/* Event metadata is split into deliberate inline groups.
+   The map pin stays beside the venue; time never becomes
+   a detached flex text node or starts with a stray bullet. */
+.event-info {
+  min-width: 0;
+}
+
+.event-info h2 {
+  font-family: var(--kk-font);
+  font-size: clamp(17px, 1.5vw, 22px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+
+.event-info .event-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  margin: 8px 0 0;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.event-info .event-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.event-info .event-location > svg {
+  display: block;
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+.event-info .event-location > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.event-info .event-time {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.event-info .event-time::before {
+  content: "·";
+  display: inline-block;
+  margin-right: 9px;
+  color: #999;
+}
+
+@media (max-width: 700px) {
+  .event-card {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr) 42px;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .event-date {
+    width: 76px;
+    height: 82px;
+  }
+
+  .event-info {
+    min-width: 0;
+  }
+
+  .event-info .event-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+  }
+
+  .event-info .event-location {
+    align-items: flex-start;
+  }
+
+  .event-info .event-location > svg {
+    margin-top: 3px;
+  }
+
+  .event-info .event-time::before {
+    content: none;
+  }
+
+  .round-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 380px) {
+  .event-card {
+    grid-template-columns: 64px minmax(0, 1fr) 36px;
+    gap: 10px;
+  }
+
+  .event-date {
+    width: 64px;
+    height: 74px;
+  }
+
+  .event-date strong {
+    font-size: 30px;
+  }
+
+  .round-arrow {
+    width: 36px;
+    height: 36px;
+  }
+}
