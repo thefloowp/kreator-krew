@@ -3126,234 +3126,195 @@ body {
 
 
 /* ==========================================================
-   FINAL MOBILE HEADER + EVENT METADATA FIX
+   DISCOVER SEARCH + FILTER CONTROLS — MOBILE LAYOUT REPAIR
+   Keeps the search field on its own row and gives Filter and
+   Sort equal, predictable space beneath it.
 ========================================================== */
 
-/* The header uses three explicit zones on phones so the
-   centered wordmark cannot collide with the message/avatar area. */
 @media (max-width: 700px) {
-  .kk-topbar,
-  .topbar {
+  .discover-content,
+  .discover-controls,
+  .discover-controls * {
+    box-sizing: border-box;
+  }
+
+  .discover-controls {
     display: grid !important;
-    grid-template-columns: 40px minmax(0, 1fr) auto;
-    align-items: center;
-    column-gap: 8px;
-    padding-inline: 16px !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px !important;
+    border: 1px solid #dedbd4;
+    background: #fffdf8;
+    overflow: hidden;
   }
 
-  .kk-topbar .mobile-menu-button {
-    grid-column: 1;
-    grid-row: 1;
-    position: relative;
-    z-index: 2;
-    width: 40px;
-    min-width: 40px;
-    justify-self: start;
-  }
-
-  .kk-topbar .wordmark {
-    position: static !important;
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: center;
-    align-self: center;
-    width: max-content;
-    max-width: 100%;
-    margin: 0;
-    transform: none !important;
-    font-size: clamp(17px, 4.5vw, 21px);
-    line-height: .88;
-    white-space: nowrap;
-    text-align: left;
-  }
-
-  .kk-topbar .wordmark span {
-    right: -9px;
-    top: -2px;
-  }
-
-  .kk-topbar .top-actions {
-    grid-column: 3;
-    grid-row: 1;
+  .discover-search {
+    grid-column: 1 / -1;
     display: flex;
     align-items: center;
-    justify-self: end;
-    gap: 9px;
+    gap: 10px;
+    width: 100%;
+    max-width: none !important;
+    min-width: 0;
+    min-height: 50px;
     margin: 0;
+    padding: 0 13px;
+    border: 1px solid #dedbd4;
+    background: #fff;
+    color: #777;
+    overflow: hidden;
+  }
+
+  .discover-search > svg {
+    display: block;
+    flex: 0 0 19px;
+    width: 19px;
+    height: 19px;
+  }
+
+  .discover-search input {
+    display: block;
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    height: 46px;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #17191c;
+    font: 400 14px/1.35 "Inter", Arial, sans-serif;
+    text-overflow: ellipsis;
+  }
+
+  .discover-search input::placeholder {
+    color: #898989;
+    opacity: 1;
+    font-size: 14px;
+  }
+
+  .discover-search button {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .discover-control-actions {
+    display: contents !important;
+  }
+
+  .discover-control-actions .filter-toggle {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    margin: 0;
+    padding: 0 10px;
+    border: 1px solid #dedbd4;
+    background: #fffdf8;
+    color: #292929;
+    font: 700 13px/1.2 "Inter", Arial, sans-serif;
     white-space: nowrap;
   }
 
-  .kk-topbar .top-actions > button[aria-label="Search"],
-  .kk-topbar .top-actions > button[aria-label="Notifications"] {
-    display: none !important;
+  .discover-control-actions .filter-toggle svg {
+    flex: 0 0 17px;
+    width: 17px;
+    height: 17px;
   }
 
-  .kk-topbar .top-actions > button[aria-label="Messages"] {
-    display: grid !important;
-    width: 32px;
-    height: 38px;
-    padding: 4px;
-  }
-
-  .kk-topbar .top-actions > .mini-avatar {
-    flex: 0 0 42px;
-    width: 42px;
-    height: 42px;
-  }
-}
-
-@media (max-width: 370px) {
-  .kk-topbar,
-  .topbar {
-    grid-template-columns: 34px minmax(0, 1fr) auto;
-    column-gap: 5px;
-    padding-inline: 11px !important;
-  }
-
-  .kk-topbar .mobile-menu-button {
-    width: 34px;
-    min-width: 34px;
-  }
-
-  .kk-topbar .top-actions {
-    gap: 5px;
-  }
-
-  .kk-topbar .top-actions > button[aria-label="Messages"] {
-    width: 28px;
-  }
-
-  .kk-topbar .top-actions > .mini-avatar {
-    flex-basis: 38px;
-    width: 38px;
-    height: 38px;
-  }
-
-  .kk-topbar .wordmark {
-    font-size: 17px;
-  }
-}
-
-/* Event metadata is split into deliberate inline groups.
-   The map pin stays beside the venue; time never becomes
-   a detached flex text node or starts with a stray bullet. */
-.event-info {
-  min-width: 0;
-}
-
-.event-info h2 {
-  font-family: var(--kk-font);
-  font-size: clamp(17px, 1.5vw, 22px);
-  font-weight: 900;
-  line-height: 1.2;
-  letter-spacing: -.035em;
-  overflow-wrap: anywhere;
-}
-
-.event-info .event-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 5px 12px;
-  margin: 8px 0 0;
-  color: #777;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.event-info .event-location {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  min-width: 0;
-}
-
-.event-info .event-location > svg {
-  display: block;
-  flex: 0 0 14px;
-  width: 14px;
-  height: 14px;
-  margin: 0;
-}
-
-.event-info .event-location > span {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.event-info .event-time {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.event-info .event-time::before {
-  content: "·";
-  display: inline-block;
-  margin-right: 9px;
-  color: #999;
-}
-
-@media (max-width: 700px) {
-  .event-card {
-    display: grid;
-    grid-template-columns: 76px minmax(0, 1fr) 42px;
+  .discover-control-actions .sort-select {
+    grid-column: 2;
+    display: flex;
     align-items: center;
-    gap: 14px;
+    justify-content: space-between;
+    gap: 6px;
     width: 100%;
-    padding: 20px 0;
-  }
-
-  .event-date {
-    width: 76px;
-    height: 82px;
-  }
-
-  .event-info {
     min-width: 0;
+    min-height: 48px;
+    margin: 0;
+    padding: 0 9px 0 11px;
+    border: 1px solid #dedbd4;
+    background: #fffdf8;
+    color: #858585;
+    font: 800 10px/1.2 "Inter", Arial, sans-serif;
+    letter-spacing: .7px;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
-  .event-info .event-meta {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 4px;
-    font-size: 13px;
+  .discover-control-actions .sort-select select {
+    flex: 1 1 auto;
+    width: 1px;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding: 7px 13px 7px 2px;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    color: #17191c;
+    font: 700 12px/1.2 "Inter", Arial, sans-serif;
+    text-align: right;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
-  .event-info .event-location {
-    align-items: flex-start;
+  .discover-categories {
+    width: 100%;
+    min-width: 0;
+    gap: 8px;
+    padding-top: 14px;
+    padding-bottom: 18px;
   }
 
-  .event-info .event-location > svg {
-    margin-top: 3px;
+  .discover-categories button {
+    min-height: 40px;
+    padding: 0 13px;
+    font: 600 12px/1.2 "Inter", Arial, sans-serif;
+    white-space: nowrap;
   }
 
-  .event-info .event-time::before {
-    content: none;
-  }
-
-  .round-arrow {
-    width: 40px;
-    height: 40px;
+  .discover-results-heading {
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    letter-spacing: .8px;
   }
 }
 
-@media (max-width: 380px) {
-  .event-card {
-    grid-template-columns: 64px minmax(0, 1fr) 36px;
-    gap: 10px;
+@media (max-width: 390px) {
+  .discover-controls {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding: 10px !important;
   }
 
-  .event-date {
-    width: 64px;
-    height: 74px;
+  .discover-search {
+    grid-column: 1;
+    min-height: 48px;
   }
 
-  .event-date strong {
-    font-size: 30px;
+  .discover-control-actions .filter-toggle,
+  .discover-control-actions .sort-select {
+    grid-column: 1;
+    min-height: 44px;
   }
 
-  .round-arrow {
-    width: 36px;
-    height: 36px;
+  .discover-control-actions .sort-select {
+    justify-content: flex-start;
+  }
+
+  .discover-control-actions .sort-select select {
+    width: auto;
+    flex: 1 1 auto;
+    text-align: left;
   }
 }
